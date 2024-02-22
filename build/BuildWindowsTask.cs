@@ -14,7 +14,7 @@ public sealed class BuildWindowsTask : FrostingTask<BuildContext>
          var buildWorkingDir = "assimp/";
         //  Disable openmp so there is no dependency on VCOMP140.dll
         context.StartProcess("cmake", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = "-DASSIMP_BUILD_TESTS=OFF -DASSIMP_INSTALL=OFF CMakeLists.txt"});
-        context.StartProcess("make", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = ""});
+        context.StartProcess("dir", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = ""});
         context.CopyFile("assimp/bin/assimp.dll", $"{context.ArtifactsDir}/assimp.dll");
     }
 }

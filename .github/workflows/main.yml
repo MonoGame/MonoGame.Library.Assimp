@@ -30,12 +30,6 @@ jobs:
         env:
           ACTIONS_RUNTIME_TOKEN: ${{ env.ACTIONS_RUNTIME_TOKEN }}
           ACTIONS_RUNTIME_URL: "${{ env.ACTIONS_RUNTIME_URL }}"
-      - name: List
-        if: runner.os != 'Linux'
-        run: ls assimp
-      - name: List
-        if: runner.os == 'Windows'
-        run: dir assimp
   deploy:
     name: deploy
     runs-on: ubuntu-latest

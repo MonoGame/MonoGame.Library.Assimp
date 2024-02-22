@@ -11,6 +11,7 @@ public sealed class BuildLinuxTask : FrostingTask<BuildContext>
 
     public override void Run(BuildContext context)
     {
+         var buildWorkingDir = "assimp/";
         context.StartProcess("cmake", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = "CMakeLists.txt"});
         context.StartProcess("make", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = ""});
         context.CopyFile(@"assimp/bin/libassimp.so", $"{context.ArtifactsDir}/libassimp.so");

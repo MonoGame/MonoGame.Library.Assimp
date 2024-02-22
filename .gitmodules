@@ -1,0 +1,6 @@
+[submodule "buildscripts"]
+	path = buildscripts
+	url = https://github.com/MonoGame/MonoGame.Library.BuildScripts.git
+[submodule "assimp"]
+	path = assimp
+	url = https://github.com/assimp/assimp.git

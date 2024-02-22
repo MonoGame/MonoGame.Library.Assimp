@@ -12,7 +12,7 @@ public sealed class BuildMacOSTask : FrostingTask<BuildContext>
     public override void Run(BuildContext context)
     {
         var buildWorkingDir = "assimp/";
-        context.StartProcess("cmake", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = "CMakeLists.txt"});
+        context.StartProcess("cmake", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = "-DASSIMP_BUILD_TESTS=OFF -DASSIMP_INSTALL=OFF CMakeLists.txt"});
         context.StartProcess("make", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = ""});
         context.CopyFile(@"assimp/bin/libassimp.5.3.0.dylib", $"{context.ArtifactsDir}/libassimp.dylib");
     }

@@ -12,15 +12,8 @@ public sealed class BuildWindowsTask : FrostingTask<BuildContext>
     public override void Run(BuildContext context)
     {
         var buildWorkingDir = "assimp/";
-        // MSBuildSettings buildSettings = new()
-        // {
-        //     Verbosity = Verbosity.Normal,
-        //     Configuration = "Release",
-        //     PlatformTarget = PlatformTarget.x64
-        // };
-        //  Disable openmp so there is no dependency on VCOMP140.dll
-        context.StartProcess("cmake", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = "-DASSIMP_BUILD_TESTS=OFF -DASSIMP_INSTALL=OFF CMakeLists.txt"});
-        //context.MSBuild("assimp/ALL_BUILD.vcxproj", buildSettings);
+        context.StartProcess("cmake", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = "-DASSIMP_BUILD_TESTS=OFF -DASSIMP_INSTALL=OFF -DMSVC_RUNTIME_LIBRARY=MultiThreaded CMakeLists.txt"});
+        context.ReplaceTextInFiles("assimp.vcxproj", "MultiThreadedDLL", "MultiThreaded");
         context.StartProcess("cmake", new ProcessSettings { WorkingDirectory = buildWorkingDir, Arguments = "--build . --config release"});
         context.CopyFile(@"assimp/bin/Release/assimp-vc143-mt.dll", $"{context.ArtifactsDir}/assimp.dll");
     }

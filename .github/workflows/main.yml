@@ -46,7 +46,7 @@ jobs:
         with:
           submodules: recursive
       - name: Run CAKE
-        run: dotnet run --project ./build/Build.csproj -- --target=Package --universalBinary=true --libraryname=FreeImage --licensepath=freeimage/license-fi.txt
+        run: dotnet run --project ./build/Build.csproj -- --target=Package --universalBinary=true --libraryname=Assimp --licensepath=assimp/LICENSE
         env:
           ACTIONS_RUNTIME_TOKEN: ${{ env.ACTIONS_RUNTIME_TOKEN }}
           ACTIONS_RUNTIME_URL: "${{ env.ACTIONS_RUNTIME_URL }}"
@@ -54,7 +54,7 @@ jobs:
       - name: Make a release
         uses: ncipollo/release-action@v1
         with:
-          name: 'MonoGame.Library.FreeImage ${{ github.ref_name }}'
+          name: 'MonoGame.Library.Assimp ${{ github.ref_name }}'
           tag: ${{ github.ref_name }}
           allowUpdates: true
           removeArtifacts: true

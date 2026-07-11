@@ -12,7 +12,7 @@ public sealed class BuildLinuxTask : FrostingTask<BuildContext>
     public override void Run(BuildContext context)
     {
         var buildWorkingDir = "assimp/";
-        context.StartProcessWithDocker("cmake", workingDirectory: buildWorkingDir, args: "-DASSIMP_BUILD_TESTS=OFF -DASSIMP_INSTALL=OFF CMakeLists.txt");
+        context.StartProcessWithDocker("cmake", workingDirectory: buildWorkingDir, args: "-DASSIMP_BUILD_ZLIB=ON -DASSIMP_BUILD_TESTS=OFF -DASSIMP_INSTALL=OFF -DBUILD_SHARED_LIBS=ON CMakeLists.txt");
         context.StartProcessWithDocker("make", workingDirectory: buildWorkingDir, args: "");
         context.CopyFile(@"assimp/bin/libassimp.so", $"{context.ArtifactsDir}/libassimp.so");
     }

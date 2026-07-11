@@ -22,7 +22,7 @@ public sealed class BuildWindowsTask : FrostingTask<BuildContext>
         
         context.StartProcess("cmake", new ProcessSettings { 
             WorkingDirectory = buildWorkingDir, 
-            Arguments = $"-A {cmakeArch} -DASSIMP_BUILD_ZLIB=OFF -DASSIMP_BUILD_TESTS=OFF -DASSIMP_INSTALL=OFF .." 
+            Arguments = $"-A {cmakeArch} -DASSIMP_BUILD_TESTS=OFF -DASSIMP_INSTALL=OFF .." 
         });
         
         context.ReplaceTextInFiles($"{buildWorkingDir}/code/assimp.vcxproj", "MultiThreadedDLL", "MultiThreaded");

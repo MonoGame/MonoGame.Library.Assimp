@@ -34,6 +34,6 @@ public sealed class BuildWindowsTask : FrostingTask<BuildContext>
         });
         
         context.CreateDirectory($"{context.ArtifactsDir}/{rid}");
-        context.CopyFile($@"{buildWorkingDir}/bin/Release/assimp-vc145-mt.dll", $"{context.ArtifactsDir}/{rid}/assimp.dll");
+        context.CopyFile($@"{buildWorkingDir}/bin/Release/assimp-vc143-mt.dll", $"{context.ArtifactsDir}/{rid}/assimp.dll");
     }
 }
